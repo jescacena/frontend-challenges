@@ -1,26 +1,174 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #fffaf2;
+  --foreground: #1f2421;
+  --surface: #fffefa;
+  --border: #d9d4c8;
+  --accent: #1f6e5d;
+  --accent-soft: #daf3ec;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-sans: var(--font-bricolage-grotesque);
+  --font-mono: var(--font-source-code-pro);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-bricolage-grotesque), "Segoe UI", sans-serif;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 0.2rem;
+}
+
+.app-shell {
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  background:
+    radial-gradient(circle at top right, #f6e0c8 0%, transparent 40%),
+    radial-gradient(circle at bottom left, #d8efe8 0%, transparent 45%),
+    var(--background);
+}
+
+.site-header,
+.site-footer {
+  border-bottom: 1px solid var(--border);
+  background: color-mix(in srgb, var(--surface) 86%, white);
+}
+
+.site-footer {
+  border-bottom: none;
+  border-top: 1px solid var(--border);
+}
+
+.site-header-inner,
+.site-footer-inner,
+.site-content {
+  width: min(1080px, 92vw);
+  margin: 0 auto;
+}
+
+.site-header-inner,
+.site-footer-inner {
+  padding: 1rem 0;
+}
+
+.site-title {
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.site-content {
+  padding: 2rem 0 3rem;
+}
+
+.page-shell {
+  display: grid;
+  gap: 1.6rem;
+}
+
+.hero {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  padding: 1.2rem;
+}
+
+.hero h1 {
+  font-size: clamp(1.5rem, 4vw, 2.3rem);
+  font-weight: 800;
+}
+
+.category-block {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.category-title {
+  text-transform: capitalize;
+  font-weight: 700;
+  font-size: 1.25rem;
+}
+
+.challenge-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.challenge-card {
+  display: grid;
+  gap: 0.5rem;
+  border: 1px solid var(--border);
+  border-radius: 0.9rem;
+  background: var(--surface);
+  padding: 1rem;
+}
+
+.challenge-level,
+.challenge-badge {
+  font-family: var(--font-source-code-pro), monospace;
+  font-size: 0.9rem;
+}
+
+.challenge-badge {
+  width: fit-content;
+  border-radius: 999px;
+  border: 1px solid var(--accent);
+  background: var(--accent-soft);
+  padding: 0.2rem 0.6rem;
+}
+
+.challenge-document {
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  background: var(--surface);
+  padding: clamp(1rem, 2.6vw, 2rem);
+  display: grid;
+  gap: 1.2rem;
+}
+
+.markdown-content {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.markdown-content h1,
+.markdown-content h2,
+.markdown-content h3 {
+  font-weight: 700;
+}
+
+.markdown-content pre {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: 0.7rem;
+  background: #f7f3ec;
+  padding: 0.9rem;
+}
+
+.markdown-content code {
+  font-family: var(--font-source-code-pro), monospace;
+}
+
+.markdown-content ul {
+  list-style: disc;
+  margin-left: 1.2rem;
+}
+
+.markdown-content ol {
+  list-style: decimal;
+  margin-left: 1.2rem;
 }
