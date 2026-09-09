@@ -16,6 +16,35 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+## Run TypeScript files from `data`
+
+This project uses Bun, so you can run `.ts` files directly from the terminal without adding `package.json` scripts.
+
+Run a file directly:
+
+```bash
+bun run data/easy/detect-type/detect-type.vanila.ts
+bun run data/easy/debounce/debounce.vanila.ts
+bun run data/easy/throttle/throttle.vanila.ts
+```
+
+Some files in `data` are type-level challenges and are not meant to execute at runtime. Type-check them instead:
+
+```bash
+bunx tsc --noEmit -p tsconfig.data.json
+```
+
+Why use `-p tsconfig.data.json`:
+
+- It loads project TypeScript path aliases like `@/*`.
+- It checks only files under `data/**/*.ts` (plus shared `src/utilities/types.ts`).
+
+If Bun is not installed yet:
+
+```bash
+curl -fsSL https://bun.sh/install | bash
+```
+
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
